@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { FramerIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import ThemeSwitch from './components/theme-switch'
 
 export default function AppShell({ children }: React.PropsWithChildren<{}>) {
   const horizontal = Math.random() > 0.5
@@ -25,6 +26,8 @@ export default function AppShell({ children }: React.PropsWithChildren<{}>) {
               Framer Motion
             </div>
           </Link>
+          <div className="flex-1" />
+          <ThemeSwitch />
         </motion.div>
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-px bg-border"
