@@ -7,6 +7,7 @@ const MotionLink = motion(Link)
 
 type DemoCardProps = {
   title: React.ReactNode
+  chapterNumber: number
   description?: React.ReactNode
   demo?: React.ReactNode
   url: string
@@ -14,7 +15,7 @@ type DemoCardProps = {
   style?: React.CSSProperties
 }
 
-export default function DemoCard({ title, description, demo, url, className, style }: DemoCardProps) {
+export default function DemoCard({ title, chapterNumber, description, demo, url, className, style }: DemoCardProps) {
   return (
     <MotionLink
       to={url}
@@ -25,7 +26,13 @@ export default function DemoCard({ title, description, demo, url, className, sty
       whileHover="hover"
     >
       {demo}
-      <div className="flex items-center gap-2 border-t px-4 py-3">
+      <div className="flex items-center gap-4 border-t p-2 px-2">
+        <motion.div
+          className="flex h-10 w-10 items-center justify-center rounded-md border text-2xl leading-none text-muted-foreground"
+          variants={{ initial: { scale: 1 }, hover: { scale: 1.2, rotate: 5 } }}
+        >
+          {chapterNumber}
+        </motion.div>
         <div className="flex-1">
           <div className="text-lg font-medium">{title}</div>
           <div className="text-sm text-muted-foreground">{description}</div>

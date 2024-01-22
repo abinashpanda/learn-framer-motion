@@ -29,6 +29,7 @@ export default function Home() {
         <motion.div variants={CHILDREN_VARIANTS}>
           <DemoCard
             title="Features Card"
+            chapterNumber={1}
             url="/features-card"
             demo={<FeatureCardDemo />}
             description={
