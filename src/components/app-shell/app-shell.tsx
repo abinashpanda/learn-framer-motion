@@ -18,7 +18,7 @@ export default function AppShell({ children }: React.PropsWithChildren<{}>) {
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <Link to="/" className="flex items-center gap-2">
-            <div className="rounded-md border bg-primary p-2 text-primary-foreground">
+            <div className="rounded-md bg-primary p-2 text-primary-foreground">
               <FramerIcon fill="currentColor" stroke="none" />
             </div>
             <div className="leading-none">
@@ -40,8 +40,8 @@ export default function AppShell({ children }: React.PropsWithChildren<{}>) {
       <motion.div
         className="relative py-20"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 1, ease: 'easeInOut' }}
       >
         {children}
