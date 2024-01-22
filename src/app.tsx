@@ -4,7 +4,7 @@ import Lenis from '@studio-freight/lenis'
 import { AnimatePresence } from 'framer-motion'
 import Home from './pages/home'
 import FeaturesCard from './pages/features-card'
-import PageTransition from './components/page-transition'
+import AppShell from './components/app-shell'
 
 export default function App() {
   useEffect(() => {
@@ -30,17 +30,17 @@ export default function App() {
         <Route
           path="/"
           element={
-            <PageTransition>
+            <AppShell>
               <Home />
-            </PageTransition>
+            </AppShell>
           }
         />
         <Route
           path="/features-card"
           element={
-            <PageTransition>
+            <AppShell>
               <FeaturesCard />
-            </PageTransition>
+            </AppShell>
           }
         />
       </Routes>

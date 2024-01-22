@@ -3,7 +3,7 @@ import { FramerIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 
-export default function PageTransition({ children }: React.PropsWithChildren<{}>) {
+export default function AppShell({ children }: React.PropsWithChildren<{}>) {
   const horizontal = Math.random() > 0.5
 
   return (
