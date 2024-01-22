@@ -1,4 +1,4 @@
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { MotionValue, motion, useScroll, useTransform } from 'framer-motion'
 import { CheckCircleIcon } from 'lucide-react'
 import { ElementRef, useRef } from 'react'
 
@@ -110,46 +110,36 @@ const FEATURES: Feature[] = [
 export default function FeaturesCard() {
   const container = useRef<ElementRef<'div'>>(null)
 
-  const cardContainer = useRef<ElementRef<'div'>>(null)
-
-  const { scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: container,
-  })
-
-  useMotionValueEvent(scrollY, 'change', (value) => {
-    if (!cardContainer.current || !container.current) {
-      return
-    }
-
-    if (value > 64 && cardContainer.current.style.position !== 'fixed') {
-      const bcr = container.current.getBoundingClientRect()
-      cardContainer.current.style.top = `${bcr.top}px`
-      cardContainer.current.style.left = `${bcr.left}px`
-      cardContainer.current.style.width = `${bcr.width}px`
-      cardContainer.current.style.position = 'fixed'
-    }
-    if (value < 100 && cardContainer.current.style.position !== 'relative') {
-      cardContainer.current.style.position = 'relative'
-      cardContainer.current.style.top = '0px'
-      cardContainer.current.style.left = '0px'
-    }
+    offset: ['start start', 'end end'],
   })
 
   return (
     <>
-      <div className="fixed left-0 right-0 top-0 h-16 border-b border-b bg-white" />
-      <div className="px-4 py-24">
+      <div className="fixed left-0 right-0 top-0 z-50 h-16 border-b bg-white" />
+      <div className="mx-auto mb-16 h-[600px] max-w-screen-lg rounded-3xl bg-zinc-100" />
+      <div className="mb-16 px-4 py-24">
         <div className="mx-auto mb-24 max-w-screen-md text-center text-6xl font-semibold">
           Exclusive features that help you sell more
         </div>
-        <div className="relative mx-auto h-[500vh] max-w-screen-lg" ref={container}>
-          <div ref={cardContainer}>
+        <div className="mx-auto max-w-screen-xl" ref={container} style={{ height: `${50 * FEATURES.length}vh` }}>
+          <div className="sticky top-[200px] h-[50vh]">
             {FEATURES.map((feature, index) => {
-              return <FeatureCard key={index} {...feature} index={index} totalItems={FEATURES.length} />
+              return (
+                <FeatureCard
+                  key={index}
+                  {...feature}
+                  index={index}
+                  totalItems={FEATURES.length}
+                  scrollYProgress={scrollYProgress}
+                />
+              )
             })}
           </div>
         </div>
       </div>
+      <div className="mx-auto mb-16 h-[600px] max-w-screen-lg rounded-3xl bg-zinc-100" />
     </>
   )
 }
@@ -162,16 +152,40 @@ type FeatureCardProps = {
   featureImage: string
   index: number
   totalItems: number
+  scrollYProgress: MotionValue<number>
 }
 
-function FeatureCard({ title, description, features, bgColor, featureImage, index, totalItems }: FeatureCardProps) {
+function FeatureCard({
+  title,
+  description,
+  features,
+  bgColor,
+  featureImage,
+  index,
+  totalItems,
+  scrollYProgress,
+}: FeatureCardProps) {
+  const x = useTransform(
+    scrollYProgress,
+    [(index + 1) / totalItems, (index + 2) / totalItems],
+    ['0%', index % 2 === 0 ? '100%' : '-100%'],
+  )
+  const opacity = useTransform(scrollYProgress, [(index + 1.5) / totalItems, (index + 2) / totalItems], [1, 0])
+  const rotate = useTransform(
+    scrollYProgress,
+    [(index + 1) / totalItems, (index + 2) / totalItems],
+    [(totalItems - 1 - index) * 1, 0],
+  )
+
   return (
     <motion.div
-      className="absolute left-0 right-0 top-0 rounded-3xl p-10"
+      className="absolute inset-0 rounded-3xl p-10"
       style={{
         backgroundColor: bgColor,
-        rotate: (totalItems - 1 - index) * 1,
+        rotate,
         zIndex: totalItems - 1 - index,
+        x,
+        opacity,
       }}
     >
       <div className="grid grid-cols-2 gap-8">
