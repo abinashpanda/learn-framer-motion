@@ -28,7 +28,7 @@ export default function DemoCard({ title, chapterNumber, description, demo, url,
       {demo}
       <div className="flex items-center gap-4 border-t p-2 px-2">
         <motion.div
-          className="flex h-10 w-10 items-center justify-center rounded-md border text-2xl leading-none text-muted-foreground"
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-2xl leading-none text-primary"
           variants={{ initial: { scale: 1 }, hover: { scale: 1.2, rotate: 5 } }}
         >
           {chapterNumber}

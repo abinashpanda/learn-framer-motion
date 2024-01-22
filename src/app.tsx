@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import Home from './pages/home'
 import FeaturesCard from './pages/features-card'
 import AppShell from './components/app-shell'
+import PageTransition from './components/page-transition'
 
 export default function App() {
   useEffect(() => {
@@ -25,25 +26,27 @@ export default function App() {
   const location = useLocation()
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <AppShell>
-              <Home />
-            </AppShell>
-          }
-        />
-        <Route
-          path="/features-card"
-          element={
-            <AppShell>
-              <FeaturesCard />
-            </AppShell>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+    <AppShell>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={
+              <PageTransition>
+                <Home />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/features-card"
+            element={
+              <PageTransition>
+                <FeaturesCard />
+              </PageTransition>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
+    </AppShell>
   )
 }
