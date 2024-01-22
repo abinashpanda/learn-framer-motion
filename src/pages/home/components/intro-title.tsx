@@ -12,20 +12,29 @@ export default function IntroTitle({ title, className, style }: IntroTitleProps)
     <motion.div
       className={cn('overflow-hidden text-6xl font-semibold [perspective:300px]', className)}
       style={style}
-      variants={{
-        initial: {},
-        animate: {
-          transition: {
-            staggerChildren: 0.05,
-          },
-        },
-      }}
+      initial="initial"
+      animate="enter"
     >
       {title.split('').map((char, index) => {
         return (
           <motion.span
+            custom={index}
             key={`${char}-${index}`}
-            variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
+            variants={{
+              initial: {
+                opacity: 0,
+                y: 40,
+              },
+              enter: (i) => ({
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
+                  ease: 'easeInOut',
+                  delay: i * 0.05,
+                },
+              }),
+            }}
             className="inline-block"
           >
             {char === ' ' ? '\u00A0' : char}

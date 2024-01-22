@@ -1,7 +1,6 @@
 import { MotionValue, motion, useScroll, useTransform } from 'framer-motion'
-import { CheckCircleIcon, HomeIcon } from 'lucide-react'
+import { CheckCircleIcon } from 'lucide-react'
 import { ElementRef, useRef } from 'react'
-import { Link } from 'react-router-dom'
 
 type Feature = {
   title: string
@@ -117,16 +116,8 @@ export default function FeaturesCard() {
   })
 
   return (
-    <div className="bg-background text-foreground">
-      <div className="fixed left-0 right-0 top-0 z-50 h-16 border-b bg-muted/20 backdrop-blur-md">
-        <div className="mx-auto flex h-full max-w-screen-lg items-center">
-          <Link to="/" className="flex items-center gap-2">
-            <HomeIcon />
-            <span>Home</span>
-          </Link>
-        </div>
-      </div>
-      <div className="space-y-16 px-4 py-20">
+    <>
+      <div className="space-y-16">
         <div className="mx-auto h-[600px] max-w-screen-lg rounded-3xl bg-muted" />
         <div>
           <div className="mx-auto mb-24 max-w-screen-md text-center text-6xl font-semibold">
@@ -154,7 +145,7 @@ export default function FeaturesCard() {
           <div className="mx-auto h-[600px] max-w-screen-lg rounded-3xl bg-muted" />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
