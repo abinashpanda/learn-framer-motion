@@ -18,7 +18,7 @@ export default function DemoCard({ title, description, demo, url, className, sty
   return (
     <MotionLink
       to={url}
-      className={cn('overflow-hidden rounded-md border', className)}
+      className={cn('block overflow-hidden rounded-md border', className)}
       style={style}
       variants={{ initial: {}, hover: {} }}
       initial="initial"
