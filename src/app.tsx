@@ -1,8 +1,10 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
+import { AnimatePresence } from 'framer-motion'
 import Home from './pages/home'
 import FeaturesCard from './pages/features-card'
+import PageTransition from './components/page-transition'
 
 export default function App() {
   useEffect(() => {
@@ -20,16 +22,28 @@ export default function App() {
     }
   })
 
-  return <RouterProvider router={router} />
-}
+  const location = useLocation()
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/features-card',
-    element: <FeaturesCard />,
-  },
-])
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageTransition>
+              <Home />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/features-card"
+          element={
+            <PageTransition>
+              <FeaturesCard />
+            </PageTransition>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  )
+}

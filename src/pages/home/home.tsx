@@ -7,9 +7,9 @@ const CHILDREN_VARIANTS = { initial: { y: 80, opacity: 0.01 }, animate: { y: 0, 
 
 export default function Home() {
   return (
-    <div className="p-4">
+    <div className="p-8">
       <motion.div
-        className="mx-auto grid max-w-screen-lg grid-cols-3 gap-4"
+        className="mx-auto grid max-w-screen-lg grid-cols-3 gap-8"
         initial="initial"
         animate="animate"
         variants={{

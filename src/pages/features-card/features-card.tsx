@@ -1,6 +1,7 @@
 import { MotionValue, motion, useScroll, useTransform } from 'framer-motion'
-import { CheckCircleIcon } from 'lucide-react'
+import { CheckCircleIcon, HomeIcon } from 'lucide-react'
 import { ElementRef, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 type Feature = {
   title: string
@@ -116,31 +117,44 @@ export default function FeaturesCard() {
   })
 
   return (
-    <>
-      <div className="fixed left-0 right-0 top-0 z-50 h-16 border-b bg-white" />
-      <div className="mx-auto mb-16 h-[600px] max-w-screen-lg rounded-3xl bg-zinc-100" />
-      <div className="mb-16 px-4 py-24">
-        <div className="mx-auto mb-24 max-w-screen-md text-center text-6xl font-semibold">
-          Exclusive features that help you sell more
-        </div>
-        <div className="mx-auto max-w-screen-xl" ref={container} style={{ height: `${50 * FEATURES.length}vh` }}>
-          <div className="sticky top-[200px] h-[50vh]">
-            {FEATURES.map((feature, index) => {
-              return (
-                <FeatureCard
-                  key={index}
-                  {...feature}
-                  index={index}
-                  totalItems={FEATURES.length}
-                  scrollYProgress={scrollYProgress}
-                />
-              )
-            })}
-          </div>
+    <div className="bg-background text-foreground">
+      <div className="fixed left-0 right-0 top-0 z-50 h-16 border-b bg-muted/20 backdrop-blur-md">
+        <div className="mx-auto flex h-full max-w-screen-lg items-center">
+          <Link to="/" className="flex items-center gap-2">
+            <HomeIcon />
+            <span>Home</span>
+          </Link>
         </div>
       </div>
-      <div className="mx-auto mb-16 h-[600px] max-w-screen-lg rounded-3xl bg-zinc-100" />
-    </>
+      <div className="space-y-16 px-4 py-20">
+        <div className="mx-auto h-[600px] max-w-screen-lg rounded-3xl bg-muted" />
+        <div>
+          <div className="mx-auto mb-24 max-w-screen-md text-center text-6xl font-semibold">
+            Exclusive features that help you sell more
+          </div>
+          <div
+            className="relative mx-auto mb-[160px] max-w-screen-xl"
+            ref={container}
+            style={{ height: `${50 * FEATURES.length}vh` }}
+          >
+            <div className="sticky top-[200px] h-[50vh]">
+              {FEATURES.map((feature, index) => {
+                return (
+                  <FeatureCard
+                    key={index}
+                    {...feature}
+                    index={index}
+                    totalItems={FEATURES.length}
+                    scrollYProgress={scrollYProgress}
+                  />
+                )
+              })}
+            </div>
+          </div>
+          <div className="mx-auto h-[600px] max-w-screen-lg rounded-3xl bg-muted" />
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -179,7 +193,7 @@ function FeatureCard({
 
   return (
     <motion.div
-      className="absolute inset-0 rounded-3xl p-10"
+      className="light absolute inset-0 rounded-3xl p-10"
       style={{
         backgroundColor: bgColor,
         rotate,
@@ -190,11 +204,11 @@ function FeatureCard({
     >
       <div className="grid grid-cols-2 gap-8">
         <div>
-          <div className="mb-4 text-4xl font-bold text-zinc-900">{title}</div>
-          <div className="mb-4 text-zinc-600">{description}</div>
+          <div className="mb-4 text-4xl font-bold text-foreground">{title}</div>
+          <div className="mb-4 text-muted-foreground">{description}</div>
           <div className="space-y-2">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-center gap-2 text-sm font-medium text-zinc-900">
+              <div key={index} className="flex items-center gap-2 text-sm font-medium text-foreground">
                 <CheckCircleIcon className="h-4 w-4" />
                 <div>{feature}</div>
               </div>
