@@ -184,7 +184,7 @@ function FeatureCard({
 
   return (
     <motion.div
-      className="light absolute inset-0 rounded-3xl p-10"
+      className="absolute inset-0 rounded-3xl border border-background p-10"
       style={{
         backgroundColor: bgColor,
         rotate,
@@ -193,7 +193,7 @@ function FeatureCard({
         opacity,
       }}
     >
-      <div className="grid grid-cols-2 gap-8">
+      <div className="light grid grid-cols-2 gap-8">
         <div>
           <div className="mb-4 text-4xl font-bold text-foreground">{title}</div>
           <div className="mb-4 text-muted-foreground">{description}</div>

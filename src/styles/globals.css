@@ -56,9 +56,9 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
   }
   body {
-    @apply overflow-x-hidden bg-background text-foreground transition-colors duration-500;
+    @apply overflow-x-hidden bg-background text-foreground transition-colors duration-150 ease-in-out;
   }
 }

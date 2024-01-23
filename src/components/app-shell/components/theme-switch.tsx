@@ -25,28 +25,30 @@ export default function ThemeSwitch() {
       onPressedChange={(value) => {
         setTheme(value ? 'dark' : 'light')
       }}
-      className="relative h-6 w-6 overflow-hidden rounded-md"
+      className="relative h-8 w-8 overflow-hidden rounded-md"
     >
       <AnimatePresence mode="wait">
         {theme === 'light' ? (
           <motion.div
             key="light"
-            className="absolute inset-0"
-            initial={{ y: 20, opacity: 0.02 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0.02 }}
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ y: 20, opacity: 0.02, rotate: -90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: 20, opacity: 0.02, rotate: 90 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <SunIcon />
+            <SunIcon fill="currentColor" className="h-6 w-6 text-amber-500" />
           </motion.div>
         ) : (
           <motion.div
             key="dark"
-            className="absolute inset-0"
-            initial={{ y: 20, opacity: 0.02 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0.02 }}
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ y: 20, opacity: 0.02, rotate: -90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: 20, opacity: 0.02, rotate: 90 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <MoonIcon />
+            <MoonIcon fill="currentColor" className="h-6 w-6 text-foreground" stroke="none" />
           </motion.div>
         )}
       </AnimatePresence>

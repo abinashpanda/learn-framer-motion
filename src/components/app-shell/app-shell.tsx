@@ -14,7 +14,7 @@ export default function AppShell({ children }: React.PropsWithChildren<{}>) {
           exit={{ x: 20, opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 rounded-md p-0.5">
             <div className="rounded-md bg-primary p-2 text-primary-foreground">
               <FramerIcon fill="currentColor" stroke="none" />
             </div>
@@ -27,7 +27,7 @@ export default function AppShell({ children }: React.PropsWithChildren<{}>) {
           <ThemeSwitch />
         </motion.div>
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-px bg-border"
+          className="absolute bottom-0 left-0 right-0 h-px bg-border/30"
           initial={{ opacity: 0.01 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
