@@ -37,7 +37,7 @@ export default function ThemeSwitch() {
             exit={{ y: 20, opacity: 0.02, rotate: 90 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <SunIcon fill="currentColor" className="h-6 w-6 text-amber-500" />
+            <SunIcon className="h-5 w-5 text-muted-foreground" />
           </motion.div>
         ) : (
           <motion.div
@@ -48,7 +48,7 @@ export default function ThemeSwitch() {
             exit={{ y: 20, opacity: 0.02, rotate: 90 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <MoonIcon fill="currentColor" className="h-6 w-6 text-foreground" stroke="none" />
+            <MoonIcon fill="currentColor" className="h-5 w-5 text-muted-foreground" stroke="none" />
           </motion.div>
         )}
       </AnimatePresence>
